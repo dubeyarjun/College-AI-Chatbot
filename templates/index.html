@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College AI Chatbot - Academic Support</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <!-- Chatbot card - centered on page -->
+    <div class="chat-card">
+      <header class="chat-header">
+        <h1>College AI Chatbot</h1>
+        <p class="subtitle">Academic Support • Ask about admissions, courses, exams, fees, hostel & more</p>
+      </header>
+
+      <!-- Chat window: messages appear here -->
+      <div class="chat-window" id="chatWindow">
+        <div class="message bot-message">
+          <span class="msg-text">Hello! I'm your college assistant. Ask me about admissions, courses, exam schedule, fees, hostel, placement, or contact details.</span>
+        </div>
+      </div>
+
+      <!-- User input area -->
+      <div class="input-area">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Type your question here..."
+          autocomplete="off"
+          aria-label="Your message"
+        />
+        <button type="button" id="sendBtn" aria-label="Send message">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
