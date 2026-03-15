@@ -15,6 +15,7 @@ import random
 import pickle
 
 from flask import Flask, request, jsonify, render_template
+from sklearn.metrics.pairwise import cosine_similarity
 
 # Preprocessing (must match train.py)
 import string
@@ -75,43 +76,86 @@ def preprocess_text(text):
     tokens = [t for t in tokens if t not in string.punctuation and t.isalnum()]
     return " ".join(tokens)
 
-def get_responses_for_tag(tag):
-    """Return list of response strings for the given intent tag."""
+def get_intent_by_tag(tag):
+    """Return the intent dict for the given tag, or None."""
     for intent in intents_data:
         if intent.get('tag') == tag:
-            return intent.get('responses', [])
-    return []
+            return intent
+    return None
+
+def get_responses_for_tag(tag):
+    """Return list of response strings for the given intent tag (legacy format with top-level responses)."""
+    intent = get_intent_by_tag(tag)
+    if intent is None:
+        return []
+    return intent.get('responses', [])
+
+def get_response_by_best_matching_entry(tag, user_message, user_vec):
+    """
+    For the given intent tag, find the entry whose patterns best match the user message
+    (by cosine similarity), then return a random response from that entry.
+    Returns (response_text or None, confidence).
+    """
+    intent = get_intent_by_tag(tag)
+    if intent is None:
+        return None, 0.0
+    entries = intent.get('entries', [])
+    if not entries:
+        # Legacy format: only top-level responses
+        responses = intent.get('responses', [])
+        if responses:
+            return random.choice(responses), 1.0
+        return None, 0.0
+    best_score = -1.0
+    best_responses = []
+    for entry in entries:
+        patterns = entry.get('patterns', [])
+        responses = entry.get('responses', [])
+        if not patterns or not responses:
+            continue
+        for pattern in patterns:
+            cleaned_p = preprocess_text(pattern)
+            if not cleaned_p:
+                continue
+            pattern_vec = vectorizer.transform([cleaned_p])
+            sim = cosine_similarity(user_vec, pattern_vec)[0, 0]
+            if sim > best_score:
+                best_score = float(sim)
+                best_responses = responses
+    if best_responses:
+        return random.choice(best_responses), best_score
+    return None, 0.0
 
 def predict_and_respond(user_message):
     """
-    Convert user message to TF-IDF vector, predict intent, and return
-    a random response from that intent. Uses confidence threshold and
-    default response when needed.
+    Predict intent, then pick the response that matches the user's question best
+    (pattern-specific response). Uses confidence threshold and default when needed.
     """
     if model is None or vectorizer is None:
         return "Error: Model not loaded. Please run train.py first.", 0.0
     cleaned = preprocess_text(user_message)
     if not cleaned:
         return DEFAULT_RESPONSE, 0.0
-    X = vectorizer.transform([cleaned])
-    # Get probability estimates for each class
-    probas = model.predict_proba(X)[0]
-    predicted_idx = model.predict(X)[0]
-    # predicted_idx is the class label; get its index for probability
+    user_vec = vectorizer.transform([cleaned])
+    probas = model.predict_proba(user_vec)[0]
+    predicted_tag = model.predict(user_vec)[0]
     classes = model.classes_
     try:
-        idx = list(classes).index(predicted_idx)
+        idx = list(classes).index(predicted_tag)
         confidence = float(probas[idx])
     except (ValueError, IndexError):
         confidence = 0.0
     if confidence < CONFIDENCE_THRESHOLD:
         return DEFAULT_RESPONSE, confidence
-    responses = get_responses_for_tag(predicted_idx)
-    if not responses:
-        return DEFAULT_RESPONSE, confidence
-    # Random response selection (BONUS)
-    chosen = random.choice(responses)
-    return chosen, confidence
+    # Get response that matches the specific question (entry with best-matching pattern)
+    response_text, match_score = get_response_by_best_matching_entry(predicted_tag, user_message, user_vec)
+    if response_text:
+        return response_text, max(confidence, match_score)
+    # Fallback to any response for this intent (legacy)
+    responses = get_responses_for_tag(predicted_tag)
+    if responses:
+        return random.choice(responses), confidence
+    return DEFAULT_RESPONSE, confidence
 
 @app.route('/')
 def index():

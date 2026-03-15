@@ -2,205 +2,104 @@
   "intents": [
     {
       "tag": "greeting",
-      "patterns": [
-        "Hi",
-        "Hello",
-        "Good morning",
-        "Good afternoon",
-        "Good evening",
-        "Hey",
-        "Hi there",
-        "Hello there"
-      ],
-      "responses": [
-        "Hello! How can I help you regarding the college?",
-        "Hi there! Ask me anything about admissions, courses, or exams.",
-        "Welcome! I'm here to help with college-related queries."
+      "entries": [
+        { "patterns": ["Hi", "Hey"], "responses": ["Hello! How can I help you regarding the college?"] },
+        { "patterns": ["Hello", "Hello there", "Hi there"], "responses": ["Hi there! Ask me anything about admissions, courses, exams, fees, hostel, or contact."] },
+        { "patterns": ["Good morning"], "responses": ["Good morning! Welcome. What would you like to know about the college?"] },
+        { "patterns": ["Good afternoon"], "responses": ["Good afternoon! How can I assist you today?"] },
+        { "patterns": ["Good evening"], "responses": ["Good evening! Feel free to ask about admissions, courses, or any college-related query."] }
       ]
     },
     {
       "tag": "admission",
-      "patterns": [
-        "How do I apply for admission?",
-        "What is the admission process?",
-        "Admission procedure",
-        "How to get admission?",
-        "Eligibility for admission",
-        "When does admission start?",
-        "Admission requirements",
-        "How to apply?"
-      ],
-      "responses": [
-        "Admission is done through the college website. Fill the online form, submit documents, and appear for the entrance/counseling if applicable.",
-        "Visit the official college portal, register, fill the application form, upload documents, and pay the application fee. Check the website for exact dates.",
-        "The admission process includes online registration, document verification, and counseling. Refer to the college prospectus for detailed steps."
+      "entries": [
+        { "patterns": ["How do I apply for admission?", "How to apply?"], "responses": ["You can apply online through the college website: register, fill the application form, upload documents, and pay the application fee."] },
+        { "patterns": ["What is the admission process?", "Admission procedure"], "responses": ["The admission process includes online registration, document verification, entrance/counseling if applicable, and seat allotment. Check the prospectus for step-by-step details."] },
+        { "patterns": ["How to get admission?"], "responses": ["Visit the official college portal, complete registration, submit the form with required documents, and follow the counseling or merit list as per the college calendar."] },
+        { "patterns": ["Eligibility for admission", "Admission requirements"], "responses": ["Eligibility varies by course: for B.Tech you need 10+2 with PCM; for M.Tech a relevant B.Tech degree; for MBA a bachelor's degree. See the prospectus for minimum percentage and subject requirements."] },
+        { "patterns": ["When does admission start?"], "responses": ["Admission usually opens in May–June for the academic year. Exact dates are announced on the college website and through official notifications."] }
       ]
     },
     {
       "tag": "courses",
-      "patterns": [
-        "What courses are offered?",
-        "List of courses",
-        "Which programs are available?",
-        "M.Tech courses",
-        "B.Tech branches",
-        "MBA program",
-        "Course details",
-        "Available programs"
-      ],
-      "responses": [
-        "We offer B.Tech, M.Tech, MBA, MCA, and other UG/PG programs. Specific branches include CSE, ECE, EEE, Mechanical, Civil, and AIML.",
-        "Courses include B.Tech in multiple branches, M.Tech (including AIML), MBA, and MCA. Check the academics section on our website for the full list.",
-        "The college offers undergraduate and postgraduate programs in Engineering, Management, and Computer Applications. Visit the academics page for details."
+      "entries": [
+        { "patterns": ["What courses are offered?", "List of courses", "Available programs"], "responses": ["We offer B.Tech (CSE, ECE, EEE, Mechanical, Civil, AIML), M.Tech (including AIML), MBA, and MCA. Check the academics section on our website for the full list."] },
+        { "patterns": ["Which programs are available?", "Course details"], "responses": ["Programs include UG: B.Tech in multiple branches; PG: M.Tech (AIML, CSE, etc.), MBA, MCA. Visit the academics page for detailed curriculum and eligibility."] },
+        { "patterns": ["M.Tech courses"], "responses": ["M.Tech is offered in specializations such as AIML, Computer Science, VLSI, and others. Duration is 2 years. Check the website for the current list of specializations."] },
+        { "patterns": ["B.Tech branches"], "responses": ["B.Tech branches include CSE, ECE, EEE, Mechanical Engineering, Civil Engineering, and AIML. Duration is 4 years."] },
+        { "patterns": ["MBA program"], "responses": ["The MBA program is a 2-year full-time course. Details about specializations and eligibility are available on the college website under Management / MBA."] }
       ]
     },
     {
       "tag": "fees",
-      "patterns": [
-        "What is the fee structure?",
-        "Tuition fees",
-        "How much is the course fee?",
-        "Fee payment",
-        "Annual fees",
-        "Scholarship and fees",
-        "Fee breakdown",
-        "Total cost of course",
-        "B.Tech fee per year",
-        "M.Tech fee per year",
-        "MBA fees",
-        "Hostel and bus fee",
-        "College fee details course wise"
-      ],
-      "responses": [
-        "Approximate yearly fees (tuition only): B.Tech: ₹1,00,000 per year, M.Tech: ₹1,20,000 per year, MBA: ₹1,50,000 per year, MCA: ₹1,00,000 per year. Examination and other university fees are extra.",
-        "Course-wise fee (approx.): B.Tech (all branches) ~₹1,00,000 per year, M.Tech (including AIML) ~₹1,20,000 per year, MBA ~₹1,50,000 per year, MCA ~₹1,00,000 per year. Exact fees may vary by category and scholarship.",
-        "Along with tuition fees, students have to pay exam fees, registration fees, and other university charges as per notifications. For official and latest fee structure, please refer to the fee brochure or accounts section of the college website."
+      "entries": [
+        { "patterns": ["What is the fee structure?", "Fee breakdown", "Total cost of course"], "responses": ["Course-wise approximate tuition per year: B.Tech ₹1,00,000, M.Tech ₹1,20,000, MBA ₹1,50,000, MCA ₹1,00,000. Exam and other university fees are extra. See the fee brochure for the exact breakdown."] },
+        { "patterns": ["Tuition fees", "Annual fees", "Fee payment"], "responses": ["Tuition fees are paid annually. Approximate figures: B.Tech ~₹1,00,000/year, M.Tech ~₹1,20,000/year, MBA ~₹1,50,000/year. Payment can be in installments as per college policy; check the accounts office."] },
+        { "patterns": ["How much is the course fee?"], "responses": ["It depends on the course: B.Tech about ₹1,00,000 per year, M.Tech about ₹1,20,000 per year, MBA about ₹1,50,000 per year, MCA about ₹1,00,000 per year. Exact amount is in the fee brochure."] },
+        { "patterns": ["B.Tech fee per year"], "responses": ["B.Tech tuition is approximately ₹1,00,000 per year (all branches). Examination and other university charges are additional."] },
+        { "patterns": ["M.Tech fee per year"], "responses": ["M.Tech tuition is approximately ₹1,20,000 per year. Other fees as per university/college norms apply."] },
+        { "patterns": ["MBA fees"], "responses": ["MBA tuition is approximately ₹1,50,000 per year. For exact fee and installments, refer to the fee structure or accounts department."] },
+        { "patterns": ["Scholarship and fees"], "responses": ["Scholarships and fee waivers are available for eligible students. Contact the accounts office or check the scholarship section on the website for criteria and application process."] },
+        { "patterns": ["Hostel and bus fee", "College fee details course wise"], "responses": ["Course fees are separate from hostel and bus. Tuition: B.Tech ~₹1,00,000, M.Tech ~₹1,20,000, MBA ~₹1,50,000 per year. Hostel and bus fees are charged separately; ask for 'hostel' or 'bus fee' for those details."] }
       ]
     },
     {
       "tag": "exam",
-      "patterns": [
-        "Exam schedule",
-        "When are the exams?",
-        "Mid-term exam dates",
-        "Semester exam timetable",
-        "Result date",
-        "Exam pattern",
-        "When is the end semester exam?",
-        "Exam schedule 2025"
-      ],
-      "responses": [
-        "Exam schedules are published on the college portal and notice boards. Mid-semester and end-semester exams are usually as per the academic calendar.",
-        "Check the student portal or notice board for the current exam timetable. Results are generally declared within 2–3 weeks after exams.",
-        "Exam dates are announced by the examination cell. Refer to the academic calendar on the website for tentative dates."
+      "entries": [
+        { "patterns": ["Exam schedule", "When are the exams?", "Semester exam timetable", "Exam schedule 2025"], "responses": ["Exam schedules are published on the college portal and notice boards. Mid-semester and end-semester dates follow the academic calendar; check the student portal for the current timetable."] },
+        { "patterns": ["Mid-term exam dates", "When is the end semester exam?"], "responses": ["Mid-term and end-semester exam dates are announced by the examination cell. Refer to the academic calendar on the website or the notice board for exact dates."] },
+        { "patterns": ["Result date"], "responses": ["Results are generally declared within 2–3 weeks after the exams. Notifications are put on the college portal and notice boards."] },
+        { "patterns": ["Exam pattern"], "responses": ["Exam pattern (marks distribution, duration, type of questions) is as per the university/college scheme. Details are shared by the department or in the course handbook."] }
       ]
     },
     {
       "tag": "hostel",
-      "patterns": [
-        "Hostel facility",
-        "Hostel fees",
-        "Is hostel available?",
-        "Hostel rooms",
-        "Boys hostel",
-        "Girls hostel",
-        "Hostel registration",
-        "Hostel rules",
-        "Room rent for hostel",
-        "Hostel room types",
-        "Mess fee",
-        "Annual hostel charges"
-      ],
-      "responses": [
-        "Yes, we have separate hostels for boys and girls. Room types include 3-seater and 2-seater rooms. 3-seater rooms are approximately ₹55,000 per year and 2-seater rooms are approximately ₹65,000 per year (excluding mess).",
-        "Approximate hostel charges per academic year: 3-sharing room: ₹55,000, 2-sharing room: ₹65,000. Mess charges are around ₹3,000 per month and are paid separately. A refundable caution deposit is also applicable at the time of admission.",
-        "Hostel registration is done at the start of the academic year on a first-come, first-served basis. Students must follow hostel rules related to attendance, visitors, and quiet hours. For exact latest hostel fee and rules, contact the hostel warden or see the hostel section on the college website."
+      "entries": [
+        { "patterns": ["Hostel facility", "Is hostel available?", "Boys hostel", "Girls hostel"], "responses": ["Yes, we have separate hostels for boys and girls with basic amenities. Registration is at the start of the academic year; contact the hostel office for availability."] },
+        { "patterns": ["Hostel fees", "Room rent for hostel", "Annual hostel charges"], "responses": ["Approximate hostel charges per year: 3-seater room ₹55,000, 2-seater room ₹65,000 (excluding mess). A refundable caution deposit is also applicable."] },
+        { "patterns": ["Hostel rooms", "Hostel room types"], "responses": ["Room types are 3-seater and 2-seater. 3-seater is about ₹55,000 per year and 2-seater about ₹65,000 per year, excluding mess charges."] },
+        { "patterns": ["Mess fee"], "responses": ["Mess charges are approximately ₹3,000 per month and are paid separately from the room rent. Details are available at the hostel office."] },
+        { "patterns": ["Hostel registration", "Hostel rules"], "responses": ["Hostel registration is done at the start of the academic year on a first-come, first-served basis. Rules regarding attendance, visitors, and quiet hours are shared at the time of allotment; contact the warden for the rulebook."] }
       ]
     },
     {
       "tag": "transport",
-      "patterns": [
-        "College bus facility",
-        "College bus timing",
-        "Bus routes",
-        "Bus fee",
-        "Is transport available?",
-        "Daily bus service",
-        "Bus details",
-        "College bus schedule"
-      ],
-      "responses": [
-        "Yes, the college provides bus facility from major areas of the city and nearby towns. Morning buses usually reach campus between 8:15 AM and 8:45 AM and return buses leave campus around 4:30 PM to 5:30 PM depending on the route.",
-        "College buses cover multiple routes such as City Center, Railway Station, Bus Stand and nearby suburbs. Exact pickup points and timings are shared at the beginning of the semester by the transport office.",
-        "Approximate annual bus fee ranges from ₹20,000 to ₹28,000 per year depending on the distance from the campus. For the detailed route-wise schedule and exact fee, please contact the transport office or check the transport section on the college website."
+      "entries": [
+        { "patterns": ["College bus facility", "Is transport available?", "Daily bus service"], "responses": ["Yes, the college provides bus facility from major areas of the city and nearby towns. Routes and timings are shared at the start of the semester by the transport office."] },
+        { "patterns": ["College bus timing", "College bus schedule", "Bus details"], "responses": ["Morning buses usually reach campus between 8:15 AM and 8:45 AM; return buses leave around 4:30 PM to 5:30 PM depending on the route. Exact schedule is available from the transport office."] },
+        { "patterns": ["Bus routes"], "responses": ["Buses cover routes such as City Center, Railway Station, Bus Stand, and nearby suburbs. Pickup points and timings are communicated at the beginning of the semester."] },
+        { "patterns": ["Bus fee"], "responses": ["Approximate annual bus fee is between ₹20,000 and ₹28,000 per year depending on distance from the campus. Contact the transport office for route-wise exact fee."] }
       ]
     },
     {
       "tag": "placement",
-      "patterns": [
-        "Placement record",
-        "Companies that visit",
-        "Placement cell",
-        "Average package",
-        "Highest package",
-        "Internship opportunities",
-        "Placement statistics"
-      ],
-      "responses": [
-        "Our placement cell works with various companies. Placement statistics and recruiter list are published annually on the college website.",
-        "Top companies from IT, core, and consulting sectors visit for placements. For latest placement reports, check the T&P section on the website.",
-        "Placements are conducted every year. Details regarding packages and companies are available with the Training and Placement cell."
+      "entries": [
+        { "patterns": ["Placement record", "Placement statistics"], "responses": ["Placement statistics and the list of recruiters are published annually on the college website. Check the T&P or placement section for the latest report."] },
+        { "patterns": ["Companies that visit", "Placement cell"], "responses": ["The placement cell invites companies from IT, core engineering, and consulting. The list of companies and recruitment details are shared on the website and by the T&P cell."] },
+        { "patterns": ["Average package", "Highest package"], "responses": ["Average and highest package details are part of the annual placement report. Refer to the Training and Placement section on the college website for the latest figures."] },
+        { "patterns": ["Internship opportunities"], "responses": ["Internship opportunities are coordinated by the T&P cell and departments. Check the placement portal and department notices for current openings and application process."] }
       ]
     },
     {
       "tag": "contact",
-      "patterns": [
-        "Contact number",
-        "College phone number",
-        "Email address",
-        "Where is the college?",
-        "College address",
-        "How to contact?",
-        "Office hours",
-        "Reception number"
-      ],
-      "responses": [
-        "You can reach us at the phone number and email given on the official website. Office hours are typically 9 AM to 5 PM on working days.",
-        "Contact details and address are available on the college website under 'Contact Us'. For specific departments, check the respective pages.",
-        "Visit our website for the complete address, phone numbers, and email. The reception is open on weekdays during office hours."
+      "entries": [
+        { "patterns": ["Contact number", "College phone number", "Reception number"], "responses": ["Contact numbers are listed on the official college website under 'Contact Us'. The reception is open on weekdays during office hours (typically 9 AM to 5 PM)."] },
+        { "patterns": ["Email address", "How to contact?"], "responses": ["Email and other contact details are available on the college website under 'Contact Us'. For department-specific queries, check the respective department pages."] },
+        { "patterns": ["Where is the college?", "College address"], "responses": ["The full address and map link are on the college website under 'Contact Us' or 'About Us'. You can also get directions from the reception."] },
+        { "patterns": ["Office hours"], "responses": ["Office hours are typically 9 AM to 5 PM on working days. Specific timings for departments may vary; check the website or call the reception."] }
       ]
     },
     {
       "tag": "goodbye",
-      "patterns": [
-        "Bye",
-        "Goodbye",
-        "See you",
-        "Thank you",
-        "Thanks",
-        "That's all",
-        "I'm done",
-        "Take care"
-      ],
-      "responses": [
-        "Goodbye! Feel free to ask if you have more questions.",
-        "Thank you for visiting! All the best with your college journey.",
-        "See you! Have a great day."
+      "entries": [
+        { "patterns": ["Bye", "Goodbye", "See you", "Take care"], "responses": ["Goodbye! Feel free to ask if you have more questions."] },
+        { "patterns": ["Thank you", "Thanks", "That's all", "I'm done"], "responses": ["Thank you for visiting! All the best with your college journey."] }
       ]
     },
     {
       "tag": "thanks",
-      "patterns": [
-        "Thank you so much",
-        "Thanks a lot",
-        "That was helpful",
-        "Great help",
-        "Appreciate it"
-      ],
-      "responses": [
-        "You're welcome! Happy to help.",
-        "Glad I could help. Ask anytime!",
-        "My pleasure. Good luck!"
+      "entries": [
+        { "patterns": ["Thank you so much", "Thanks a lot", "That was helpful", "Great help", "Appreciate it"], "responses": ["You're welcome! Happy to help. Ask anytime if you need more information."] }
       ]
     }
   ]

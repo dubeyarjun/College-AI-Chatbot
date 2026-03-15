@@ -61,16 +61,30 @@ def preprocess_text(text):
     # Join back for vectorizer (TF-IDF expects string input)
     return " ".join(tokens)
 
+def get_patterns_from_intent(intent):
+    """
+    Get flat list of patterns from an intent.
+    Supports both formats: top-level 'patterns' or 'entries' with pattern lists.
+    """
+    patterns = []
+    if 'entries' in intent:
+        for entry in intent.get('entries', []):
+            patterns.extend(entry.get('patterns', []))
+    else:
+        patterns = intent.get('patterns', [])
+    return patterns
+
 def prepare_data(intents):
     """
     Extract patterns and corresponding tags from intents.
     Returns X (list of preprocessed pattern strings), y (list of tags).
+    Supports intents with 'entries' (pattern-specific responses) or 'patterns'.
     """
     X = []
     y = []
     for intent in intents:
         tag = intent.get('tag')
-        patterns = intent.get('patterns', [])
+        patterns = get_patterns_from_intent(intent)
         if not tag or not patterns:
             continue
         for pattern in patterns:
