@@ -33,6 +33,10 @@ def ensure_nltk():
     except LookupError:
         # Download punkt into the writable /tmp directory
         nltk.download('punkt', download_dir=nltk_data_dir, quiet=True)
+    try:
+        nltk.data.find('tokenizers/punkt_tab')
+    except LookupError:
+        nltk.download('punkt_tab', download_dir=nltk_data_dir, quiet=True)
 
 ensure_nltk()
 
