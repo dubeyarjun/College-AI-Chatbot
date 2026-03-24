@@ -24,10 +24,15 @@ from nltk.tokenize import word_tokenize
 
 # Ensure NLTK data is available
 def ensure_nltk():
+    nltk_data_dir = '/tmp/nltk_data'
+    if nltk_data_dir not in nltk.data.path:
+        nltk.data.path.append(nltk_data_dir)
     try:
+        # Check if punkt tokenizer is available in any of the nltk.data.path directories
         nltk.data.find('tokenizers/punkt')
     except LookupError:
-        nltk.download('punkt', quiet=True)
+        # Download punkt into the writable /tmp directory
+        nltk.download('punkt', download_dir=nltk_data_dir, quiet=True)
 
 ensure_nltk()
 

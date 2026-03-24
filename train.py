@@ -23,14 +23,17 @@ from sklearn.model_selection import train_test_split
 # Download NLTK data if not present (required for tokenization)
 def download_nltk_data():
     """Download required NLTK corpora (e.g., punkt for tokenization)."""
+    nltk_data_dir = '/tmp/nltk_data'
+    if nltk_data_dir not in nltk.data.path:
+        nltk.data.path.append(nltk_data_dir)
     try:
         nltk.data.find('tokenizers/punkt')
     except LookupError:
-        nltk.download('punkt', quiet=True)
+        nltk.download('punkt', download_dir=nltk_data_dir, quiet=True)
     try:
         nltk.data.find('tokenizers/punkt_tab')
     except LookupError:
-        nltk.download('punkt_tab', quiet=True)
+        nltk.download('punkt_tab', download_dir=nltk_data_dir, quiet=True)
 
 def load_intents(filepath='intents.json'):
     """
