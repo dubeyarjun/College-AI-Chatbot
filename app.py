@@ -199,8 +199,13 @@ def chat():
             'error': str(e)
         }), 500
 
-if __name__ == '__main__':
+# Try to load artifacts globally so Vercel serverless environment can access them
+try:
     load_artifacts()
+except Exception as e:
+    print(f"Failed to load artifacts at startup: {e}")
+
+if __name__ == '__main__':
     # Run instructions (comment): Install deps (pip install -r requirements.txt),
     # Train (python train.py), Run (python app.py), Open http://127.0.0.1:5000
     app.run(debug=True, host='0.0.0.0', port=5000)
