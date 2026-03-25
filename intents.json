@@ -101,6 +101,25 @@
       "entries": [
         { "patterns": ["Thank you so much", "Thanks a lot", "That was helpful", "Great help", "Appreciate it"], "responses": ["You're welcome! Happy to help. Ask anytime if you need more information."] }
       ]
+    },
+    {
+      "tag": "academics_cgpa_result",
+      "entries": [
+        { "patterns": ["How is CGPA calculated?", "What is CGPA?", "CGPA criteria"], "responses": ["CGPA is calculated based on the grade points earned in each course multiplied by their respective credits, divided by total credits. Refer to the university handbook for the exact formula."] },
+        { "patterns": ["When will the results show?", "Result declaration time", "Semester result date", "Show my result"], "responses": ["Results are typically declared 3-4 weeks after the conclusion of semester exams. You can check your results on the university/student portal once announced."] }
+      ]
+    },
+    {
+      "tag": "exam_fee",
+      "entries": [
+        { "patterns": ["Examination fee per semester", "How much is the exam fee?", "Semester exam charges"], "responses": ["The examination fee is charged per semester. It ranges approximately from \u20b91500 to \u20b93000 depending on your course and university guidelines. Check with the accounts or exam cell before filling the exam form."] }
+      ]
+    },
+    {
+      "tag": "faculty",
+      "entries": [
+        { "patterns": ["Teacher list", "Faculty wise list", "Who are the professors?", "List of teachers", "Faculty list"], "responses": ["Our college has highly qualified faculty members for each department. You can find the complete department-wise faculty list, along with their profiles and contact details, on the 'Academics/Departments' section of the college website."] }
+      ]
     }
   ]
 }
